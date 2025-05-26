@@ -44,7 +44,7 @@ Create the file or add/change the following setting:
 
 ### Linux Only
 
-Tested on `Ubuntu 20.04` with `X11`, but should work on other distributions as well.
+Tested on `Ubuntu 24.04.2 LTS` with `X11`, but should work on other distributions as well.
 
 ### No Fullscreen
 
