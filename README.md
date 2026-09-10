@@ -6,7 +6,7 @@ A tool which snips text from the screen and reads it aloud.
 
 ## Prerequisites
 
-    sudo apt install flameshot tesseract-ocr rhvoice
+    sudo apt install gnome-screenshot tesseract-ocr rhvoice
 
 
 ## Installation
@@ -27,18 +27,6 @@ Add shortcuts (Keyboard / Mouse / Other Device) for the following scripts, or ju
 To save screenshots you snip, use `--save-dir` option:
 
     ./bin/start-snip-ocr-tts.sh --save-dir ~/Pictures/screenshots
-
-### Stopping Desktop Notifications
-
-If you don't want to see flameshot desktop notifications, you can configure it in the gui by running `flameshot` directly, or by editing the config file:
-
-    ~/.config/flameshot/config.ini
-
-
-Create the file or add/change the following setting:
-
-    [General]
-    showDesktopNotification=false
 
 ## Limitations
 

@@ -44,24 +44,25 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Create save directory for temporary file
 mkdir -p "$SAVE_DIR"
 TMP_OCR_SCREENSHOT="$SAVE_DIR/ocr_screenshot.png"
 
-# Build flameshot command arguments
-flameshot_args=(gui -s -r)
-if [ "$SAVE" = true ]; then
-    flameshot_args+=(-p "$SAVE_DIR")
+# Capture an Area
+if ! gnome-screenshot -a -f "$TMP_OCR_SCREENSHOT"; then
+    echo "Selection cancelled"
+    exit 1
 fi
-
-# Run flameshot and capture the screenshot to temp file
-flameshot "${flameshot_args[@]}" > "$TMP_OCR_SCREENSHOT"
 
 # OCR with Tesseract
 TEXT=$(tesseract "$TMP_OCR_SCREENSHOT" stdout 2>/dev/null)
 
-# Always delete the temporary screenshot
+# Clean up
 rm -f "$TMP_OCR_SCREENSHOT"
 
 # Read aloud
-echo "$TEXT" | RHVoice-test -p slt -r 120 -q 3
+if [ -n "$TEXT" ]; then
+    echo "$TEXT" | RHVoice-test -p slt -r 120 -q 3
+else
+    echo "No text detected."
+fi
+
